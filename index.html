@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body ng-controller="TrackerController as trckCtrl">
+    <div class="jumbotron">
+        <h1>Budget Tracker:</h1>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="panel panel-success">
+                    <div class="panel-heading">Income Entries:</div>
+                    <div class="panel-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="desc">Description:</label>
+                                <input type="text" class="form-control" ng-model="trckCtrl.newIncome.text">
+                            </div>
+                            <div class="form-group">
+                                <label for="amount">Amount:</label>
+                                <input type="number" class="form-control" ng-model="trckCtrl.newIncome.amount">
+                            </div>
+                            <button type="submit" class="btn btn-success" ng-click="trckCtrl.addIncome()">+Add Income</button>
+                            <hr>
+                            <table class="table" style="margin-bottom:0;">
+                                <thead>
+                                    <tr>
+                                        <th>Description</th>
+                                        <th>Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="item in trckCtrl.incomeEntries">
+                                        <td>{{item.text}}</td>
+                                        <td>${{item.amount}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="panel panel-danger">
+                    <div class="panel-heading">Expense Entries:</div>
+                    <div class="panel-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="desc">Description:</label>
+                                <input type="text" class="form-control" ng-model="trckCtrl.newExpense.text">
+                            </div>
+                            <div class="form-group">
+                                <label for="amount">Amount:</label>
+                                <input type="number" class="form-control" ng-model="trckCtrl.newExpense.amount">
+                            </div>
+                            <button type="submit" class="btn btn-danger" ng-click="trckCtrl.addExpense()">+Add Expense</button>
+                            <hr>
+                            <table class="table table-striped" style="margin-bottom:0;">
+                                <thead>
+                                    <tr>
+                                        <th>Description:</th>
+                                        <th>Amount:</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="item in trckCtrl.expenseEntries">
+                                        <td>{{item.text}}</td>
+                                        <td>${{item.amount}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="container">
+    <div class="panel panel-info">
+        <div class="panel-heading">Summary</div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-sm-4"><strong>Total Income:</strong> <br>${{trckCtrl.incomeTotal}}</div>
+            <div class="col-sm-4"><strong>Total Expense:</strong> <br>${{trckCtrl.expenseTotal}}</div>
+            <div class="col-sm-4"><strong>Left after spending:</strong> <br>${{trckCtrl.incomeTotal - trckCtrl.expenseTotal}}</div>
+        </div>
+    </div>
+  </div>
+</div>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="app/app.module.js"></script>
+    <script type="text/javascript" src="app/tracker.controller.js"></script>
+</body>
+</html>
